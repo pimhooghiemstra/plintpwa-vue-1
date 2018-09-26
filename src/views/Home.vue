@@ -1,18 +1,33 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <br>
+    <button @click="notify">Enable notifications ></button>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'home',
-  components: {
-    HelloWorld
-  }
+  methods: {
+    notify() {
+        alert('You just clicked the notification button')
+    }
+  },
 }
 </script>
+
+<style scoped lang="less">
+    button {
+        background: #1da025;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 18px;
+        margin-top: 20px;
+
+        &:focus {
+            outline: none;
+        }
+    }
+</style>
