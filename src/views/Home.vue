@@ -37,7 +37,7 @@ export default {
                   icon: '/img/icons/android-chrome-192x192.png',
                   image: '/img/autumn-forest.png',
                   vibrate: [300, 200, 300],
-                  badge: '/img/icons/apple-touch-icon-120x120.png',
+                  badge: '/img/icons/plint-badge-96x96.png',
                   // actions: [
                   //     { action: 'confirm', title: 'Okay', icon: '/img/icons/android-chrome-192x192.png'},
                   //     { action: 'cancel', title: 'Cancel', icon: '/img/icons/android-chrome-192x192.png'}
