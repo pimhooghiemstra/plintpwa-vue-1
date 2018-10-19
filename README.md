@@ -8,7 +8,8 @@ Notifications API to show a notification when you click the green button
 ![The app we'll build](https://www.blog.plint-sites.nl/wordpress/wp-content/uploads/2018/10/app-homepage.png)
 
 ## Demo
-I'll post the url of the demo site soon!
+I have a demo running on https://app.plint-demos.nl/. However, as I write more tutorials on this topic, the demo
+will be more involved and I'll report which code the demo reflects.
 
 ## Project setup
 ```
