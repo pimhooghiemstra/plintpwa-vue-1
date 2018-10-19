@@ -1,11 +1,14 @@
-# plintpwa-vue-1
+# Project description
 This repo contains the code that accompanies the blog post you can read here
 https://www.blog.plint-sites.nl/progressive-web-app-using-vue-cli-3/
 
 It's a simple PWA created using the @vue/cli with the pwa plugin. It uses the
-Notifications API to show a notification when you click the button
+Notifications API to show a notification when you click the green button
 
 ![The app we'll build](https://www.blog.plint-sites.nl/wordpress/wp-content/uploads/2018/10/app-homepage.png)
+
+## Demo
+I'll post the url of the demo site soon!
 
 ## Project setup
 ```
