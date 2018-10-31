@@ -63,10 +63,10 @@ export default {
                 navigator.serviceWorker.ready // returns a Promise, the active SW registration
                 .then(swreg => {
                     this.serviceWorkerRegistation = swreg
-                    this.subscribe(this.serviceWorkerRegistation)
+                    return this.subscribe(this.serviceWorkerRegistation)
                 })
             } else {
-                this.subscribe(this.serviceWorkerRegistation)
+                return this.subscribe(this.serviceWorkerRegistation)
             }
         },
         subscribe(swreg) {
