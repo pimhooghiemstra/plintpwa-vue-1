@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     name: 'home',
     data() {
@@ -29,7 +30,7 @@ export default {
                     .then(result => {
                         // if granted, create new subscription
                         if (result === 'granted') {
-                            return this.createSubscription()
+                            this.createSubscription()
                             .then(sub => {
                                 console.log('subscription created on the client', sub);
                                 this.subscription = sub
@@ -49,7 +50,7 @@ export default {
                             })
                             .then(() => this.showNotification())
                         } else {
-                            return null
+                            console.log('User did not granted permission')
                         }
                     })
                 } else {
@@ -60,7 +61,7 @@ export default {
         createSubscription() {
             console.log('ask for active service worker registration');
             if (this.serviceWorkerRegistation === null) {
-                navigator.serviceWorker.ready // returns a Promise, the active SW registration
+                return navigator.serviceWorker.ready // returns a Promise, the active SW registration
                 .then(swreg => {
                     this.serviceWorkerRegistation = swreg
                     return this.subscribe(this.serviceWorkerRegistation)

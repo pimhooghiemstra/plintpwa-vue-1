@@ -16,6 +16,7 @@
     "@vue/cli-plugin-babel": "^3.0.3",
     "@vue/cli-plugin-pwa": "^3.0.3",
     "@vue/cli-service": "^3.0.3",
+    "axios": "^0.18.0",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "vue-template-compiler": "^2.5.17"
