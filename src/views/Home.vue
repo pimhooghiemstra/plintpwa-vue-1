@@ -38,14 +38,15 @@ export default {
                                 // create a user, then save username in localStorage
                                 return axios.post(`${process.env.VUE_APP_API_PATH}/user`)
                             })
-                            .then(user => {
+                            .then(({data}) => {
+                                const { user } = data
                                 console.log('user created on the server', user);
                                 localStorage.setItem('username', user.name)
 
                                 // store new subscription on the server
                                 return axios.post(`${process.env.VUE_APP_API_PATH}/subscription`, {
                                     subscription: this.subscription,
-                                    user
+                                    userId: user.id,
                                 })
                             })
                             .then(() => this.showNotification())
@@ -121,29 +122,30 @@ export default {
     created() {
         if ('Notification' in window && 'serviceWorker' in navigator) {
             this.notificationsSupported = true
-
-            // Find out if the user has a subscription at the moment.
-            // If so, update the enabled flag in data
-            this.findSubscription()
-            .then(sub => {
-                if (sub === null) {
-                    this.buttonDisabled = false
-                } else {
-                    // retrieve user info from API
-                    this.buttonDisabled = true
-                    this.notificationsEnabled = true
-                }
-            })
-
-
-            // // Since we don't have authentication, we check for the random
-            // // username in LocalStorage. If it is there, we can try to find
-            // // a user/ subscription using the API
-            // const userName = localStorage.getItem('username');
-            // if (userName !== null) {
-
-            // }
         }
+    },
+    mounted() {
+        // Find out if the user has a subscription at the moment.
+        // If so, update the enabled flag in data
+        this.findSubscription()
+        .then(sub => {
+            if (sub === null) {
+                this.buttonDisabled = false
+            } else {
+                // retrieve user info from API
+                this.buttonDisabled = true
+                this.notificationsEnabled = true
+            }
+        })
+
+
+        // // Since we don't have authentication, we check for the random
+        // // username in LocalStorage. If it is there, we can try to find
+        // // a user/ subscription using the API
+        // const userName = localStorage.getItem('username');
+        // if (userName !== null) {
+
+        // }
     },
 }
 </script>
