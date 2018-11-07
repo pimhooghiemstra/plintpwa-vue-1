@@ -121,10 +121,6 @@ export default {
                 image: '/img/autumn-forest.png',
                 vibrate: [300, 200, 300],
                 badge: '/img/icons/plint-badge-96x96.png',
-                // actions: [
-                //     { action: 'confirm', title: 'Okay', icon: '/img/icons/android-chrome-192x192.png'},
-                //     { action: 'cancel', title: 'Cancel', icon: '/img/icons/android-chrome-192x192.png'}
-                // ],
             })
         },
         findSubscription() {
@@ -142,6 +138,9 @@ export default {
             return axios.post(`${process.env.VUE_APP_API_PATH}/notify`, {
                 username: localStorage.getItem('username'),
                 message: this.message,
+            })
+            .then(response => {
+                this.message = null
             })
         },
         urlBase64ToUint8Array(base64String) {
