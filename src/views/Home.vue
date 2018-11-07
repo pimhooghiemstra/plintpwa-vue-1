@@ -3,6 +3,12 @@
         <img alt="Vue logo" src="../assets/logo.png">
         <br>
         <button v-if="notificationsSupported" @click="toggleSubscription" :disabled="buttonDisabled">{{ (notificationsEnabled ? 'Disable' : 'Enable') }} notifications ></button>
+        <div v-if="notificationsEnabled">
+            <br>
+            <textarea v-model="message" cols="30" rows="10" placeholder="Your message for push notification here"></textarea>
+            <br>
+            <button @click="createPushNotification">Notify with Push</button>
+        </div>
     </div>
 </template>
 
@@ -17,6 +23,7 @@ export default {
             buttonDisabled: false,
             serviceWorkerRegistation: null,
             subscription: null,
+            message: null,
         }
     },
     methods: {
@@ -129,6 +136,14 @@ export default {
                 return this.getSubscription(this.serviceWorkerRegistation)
             })
         },
+        createPushNotification() {
+            // get the textarea content and send it to the server.
+            // The server will create a notifications that will be pushed
+            return axios.post(`${process.env.VUE_APP_API_PATH}/notify`, {
+                username: localStorage.getItem('username'),
+                message: this.message,
+            })
+        },
         urlBase64ToUint8Array(base64String) {
             const padding = '='.repeat((4 - base64String.length % 4) % 4);
             const base64 = (base64String + padding)
@@ -172,6 +187,7 @@ export default {
 
 <style scoped lang="less">
     button {
+        width: 240px;
         background: #1da025;
         color: #fff;
         padding: 10px 20px;
@@ -186,5 +202,12 @@ export default {
             opacity: 0.5;
             cursor: not-allowed;
         }
+    }
+
+    textarea {
+        width: 240px;
+        padding: 10px;
+        border:1px solid #ccc;
+        box-sizing: border-box;
     }
 </style>
