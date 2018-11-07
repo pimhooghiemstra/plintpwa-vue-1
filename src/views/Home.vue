@@ -14,7 +14,7 @@ export default {
         return {
             notificationsSupported: false,
             notificationsEnabled: false,
-            buttonDisabled: true,
+            buttonDisabled: false,
             serviceWorkerRegistation: null,
             subscription: null,
         }
@@ -22,7 +22,7 @@ export default {
     methods: {
         toggleSubscription() {
             if (this.notificationsSupported) {
-
+                this.buttonDisabled = true
                 // Find out if we need to create a subscription or delete it
                 if (!this.notificationsEnabled) {
                     // Ask permission and when granted, create new subscription
@@ -35,8 +35,8 @@ export default {
                                 console.log('subscription created on the client', sub);
                                 this.subscription = sub
 
-                                // create a user, then save username in localStorage
-                                return axios.post(`${process.env.VUE_APP_API_PATH}/user`)
+                                // get new (or existing user) from backend
+                                return axios.post(`${process.env.VUE_APP_API_PATH}/user`, {username: localStorage.getItem('username')})
                             })
                             .then(({data}) => {
                                 const { user } = data
@@ -49,13 +49,32 @@ export default {
                                     userId: user.id,
                                 })
                             })
-                            .then(() => this.showNotification())
+                            .then(() => {
+                                this.showNotification()
+                                this.buttonDisabled = false
+                                this.notificationsEnabled = true
+                            })
                         } else {
                             console.log('User did not granted permission')
                         }
                     })
                 } else {
                     // Destroy subscription
+                    console.log('Disable subscription');
+                    if (this.subscription !== null) {
+                        // destroy on the server
+                        return axios.post(`${process.env.VUE_APP_API_PATH}/subscription/delete`, {
+                            endpoint: this.subscription.endpoint,
+                        })
+                        // unsubscribe on the client
+                        .then(() => this.subscription.unsubscribe())
+                        .then(() => {
+                            // update the data
+                            this.notificationsEnabled = false
+                            this.buttonDisabled = false
+                            this.subscription = null
+                        })
+                    }
                 }
             }
         },
@@ -70,6 +89,10 @@ export default {
             } else {
                 return this.subscribe(this.serviceWorkerRegistation)
             }
+        },
+        getSubscription(swreg) {
+            console.log('ask for available subscription');
+            return swreg.pushManager.getSubscription()
         },
         subscribe(swreg) {
             console.log('create new subscription for this browser on this device');
@@ -98,11 +121,13 @@ export default {
             })
         },
         findSubscription() {
-            // check if this user + device has a subscription going
-            // return either the subscription or null
-
-            // return null // becomes a Promise later on
-            return new Promise(resolve => resolve(null))
+            console.log('get active service worker registration');
+            return navigator.serviceWorker.ready
+            .then(swreg => {
+                console.log('haal active subscription op');
+                this.serviceWorkerRegistation = swreg
+                return this.getSubscription(this.serviceWorkerRegistation)
+            })
         },
         urlBase64ToUint8Array(base64String) {
             const padding = '='.repeat((4 - base64String.length % 4) % 4);
@@ -130,22 +155,17 @@ export default {
         this.findSubscription()
         .then(sub => {
             if (sub === null) {
+                console.log('no active subscription found on the client', sub);
                 this.buttonDisabled = false
+                this.notificationsEnabled = false
             } else {
+                console.log('Active subscription found', sub);
                 // retrieve user info from API
-                this.buttonDisabled = true
+                this.buttonDisabled = false
                 this.notificationsEnabled = true
+                this.subscription = sub
             }
         })
-
-
-        // // Since we don't have authentication, we check for the random
-        // // username in LocalStorage. If it is there, we can try to find
-        // // a user/ subscription using the API
-        // const userName = localStorage.getItem('username');
-        // if (userName !== null) {
-
-        // }
     },
 }
 </script>
