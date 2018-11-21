@@ -8,7 +8,7 @@ you are able to send a push notification to yourself with custom text.
 
 ## Part 2
 In part 2 we include push notifications. For that, we need a backend which we create using the Laravel
-framework. The repo for the Laravel project is available [here](https://github.com/pimhooghiemstra/plint-pwa-api).
+framework. The repo for the Laravel project is available [here](https://github.com/pimhooghiemstra/plint-pwa-api). The frontend code is available in [this release](https://github.com/pimhooghiemstra/plintpwa-vue-1/releases/tag/v0.2). You can read the corresponding blogpost on our [blog](https://www.blog.plint-sites.nl/how-to-add-push-notifications-to-a-progressive-web-app/).
 
 ![Our app v0.2](https://www.blog.plint-sites.nl/wordpress/wp-content/uploads/2018/11/notify-with-push.png)
 
@@ -23,7 +23,7 @@ the corresponding blog post is [here](https://www.blog.plint-sites.nl/progressiv
 
 ## Demo
 I have a demo of the code running on https://app.plint-demos.nl/. However, as I write more tutorials on this topic, the demo
-will be more involved and I'll report which code the demo reflects. Currently, the demo reflects Part 1
+will be more involved and I'll report which code the demo reflects. Currently, the demo reflects Part 2
 
 ## Project setup
 ```
