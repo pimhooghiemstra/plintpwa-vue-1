@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === 'production') {
             console.log('Content has been cached for offline use.')
         },
         updated (registration) {
-            console.log('New content is available; we\'ll make sure the updated SW will be activated swiftly and automatically!')
+            console.log('New content is available; we\'ll make sure the updated SW will be activated now. However, user still needs to refresh the UI')
             registration.waiting.postMessage('skipWaiting')
         },
         offline () {

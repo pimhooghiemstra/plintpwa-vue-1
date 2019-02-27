@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <img alt="Vue logo" src="../assets/peonie.png">
+        <img alt="Vue logo" :src="image">
         <br>
         <button v-if="notificationsSupported" @click="toggleSubscription" :disabled="buttonDisabled">{{ (notificationsEnabled ? 'Disable' : 'Enable') }} notifications ></button>
         <div v-if="notificationsEnabled">
@@ -16,6 +16,11 @@
 import axios from 'axios'
 export default {
     name: 'home',
+    computed: {
+        image() {
+            return this.images[Math.floor(this.images.length * Math.random())]
+        },
+    },
     data() {
         return {
             notificationsSupported: false,
@@ -24,6 +29,13 @@ export default {
             serviceWorkerRegistation: null,
             subscription: null,
             message: null,
+            images: [
+                require('../assets/leonie-stelvio.png'), 
+                require('../assets/leonie-mortirolo.png'), 
+                require('../assets/pim-mortirolo.png'), 
+                require('../assets/mortirolo.png'), 
+                require('../assets/logo.png'),
+            ],            
         }
     },
     methods: {
@@ -185,6 +197,10 @@ export default {
 </script>
 
 <style scoped lang="less">
+    img {
+        max-width: 300px;
+    }
+
     button {
         width: 240px;
         background: #1da025;
