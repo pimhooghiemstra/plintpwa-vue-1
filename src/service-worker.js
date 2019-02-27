@@ -1,6 +1,4 @@
-// service-worker.js
-console.log('*** Our own service worker! ***');
-
+// custom service-worker.js
 if (workbox) {
     // adjust log level for displaying workbox logs
     workbox.core.setLogLevel(workbox.core.LOG_LEVELS.debug)
@@ -18,16 +16,12 @@ if (workbox) {
 
 // This code listens for the user's confirmation to update the app.
 self.addEventListener('message', (e) => {
-    console.log('message', e)
     if (!e.data) {
         return;
     }
 
-    console.log('message data', e.data)
-  
     switch (e.data) {
         case 'skipWaiting':
-            console.log('Received message: SW updated, activate it now by skipWaiting')
             self.skipWaiting();
             break;
         default:
@@ -43,8 +37,6 @@ self.addEventListener('push', (e) => {
         data = e.data.json()
     }
 
-    console.log('data for notification', data);
-
     const options = {
         body: data.body,
         icon: '/img/icons/android-chrome-192x192.png',
@@ -53,9 +45,5 @@ self.addEventListener('push', (e) => {
         badge: '/img/icons/plint-badge-96x96.png',
     }
 
-    console.log('options passed to Notification', options);
-
     e.waitUntil(self.registration.showNotification(data.title, options))
 })
-
-console.log('*** End of our own service worker! ***');
