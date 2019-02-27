@@ -1,5 +1,10 @@
 // service-worker.js
-console.log('Our own service worker file!');
+console.log('*** Our own service worker! ***');
+
+if (workbox) {
+    // adjust log level for displaying workbox logs
+    workbox.core.setLogLevel(workbox.core.LOG_LEVELS.debug)
+}
 
 // Listen to Push
 self.addEventListener('push', (e) => {
@@ -22,3 +27,5 @@ self.addEventListener('push', (e) => {
 
     e.waitUntil(self.registration.showNotification(data.title, options))
 })
+
+console.log('*** End of our own service worker! ***');
