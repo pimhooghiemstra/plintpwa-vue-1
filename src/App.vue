@@ -4,6 +4,7 @@
             <router-link to="/">Home</router-link> |
             <router-link to="/about">About</router-link>
         </div>
+        <button id="refresh-button" v-if="updateExists" @click="refreshApp">Click to update!</button>
         <p v-show="showMessage" id="notification">
             This demo reflects the code from <a href="https://github.com/pimhooghiemstra/plintpwa-vue-1/releases/tag/v0.2" target="_blank">this repository</a>. The <a :href="blogPost">corresponding post</a> is on our blog.
             <br>
@@ -20,13 +21,41 @@
             return {
                 showMessage: true,
                 blogPost: 'https://www.blog.plint-sites.nl/how-to-add-push-notifications-to-a-progressive-web-app/',
+                // refresh variables
+                refreshing: false,
+                registration: null,
+                updateExists: false,
             };
         },
         methods: {
             hideMessage() {
                 this.showMessage = false
             },
-        }
+            showRefreshUI(e) {
+                this.registration = e.detail
+                this.updateExists = true  
+            },
+            refreshApp() {
+                this.updateExists = false
+                if (!this.registration || !this.registration.waiting) return
+                // send message to SW to skip the waiting and activate the new SW
+                this.registration.waiting.postMessage('skipWaiting')
+            },
+        },
+        created() {
+            // --- 
+            // Custom code to let user update the app
+            // when a new service worker is available
+            // --- 
+            document.addEventListener('swUpdated', this.showRefreshUI, {once: true})
+                                       
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+                if (this.refreshing) return
+                this.refreshing = true
+                // Here the actual reload of the page occurs
+                window.location.reload()
+            })
+        },
     };
 </script>
 
@@ -71,6 +100,23 @@ p#notification {
         &:hover {
             cursor: pointer;
         }
+    }
+}
+button#refresh-button {
+    width: 240px;
+    background: #a0251d;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 18px;
+    margin-bottom: 30px;
+
+    &:focus {
+        outline: none;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
     }
 }
 </style>

@@ -30,7 +30,6 @@ export default {
             subscription: null,
             message: null,
             images: [
-                require('../assets/leonie-stelvio.png'), 
                 require('../assets/leonie-mortirolo.png'), 
                 require('../assets/pim-mortirolo.png'), 
                 require('../assets/mortirolo.png'), 
@@ -203,7 +202,7 @@ export default {
 
     button {
         width: 240px;
-        background: #1da025;
+        background: #a02501;
         color: #fff;
         padding: 10px 20px;
         font-size: 18px;
