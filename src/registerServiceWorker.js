@@ -13,8 +13,10 @@ if (process.env.NODE_ENV === 'production') {
         cached () {
             console.log('Content has been cached for offline use.')
         },
-        updated () {
-            console.log('New content is available; please refresh.')
+        updated (registration) {
+            console.log('New content is available; we\'ll make sure the updated SW will be activated swiftly and automatically!')
+            let worker = registration.waiting
+            worker.postMessage({action: 'skipWaiting'})
         },
         offline () {
             console.log('No internet connection found. App is running in offline mode.')

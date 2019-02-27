@@ -11,6 +11,23 @@ if (workbox) {
     workbox.precaching.precacheAndRoute(self.__precacheManifest);
 }
 
+// This code listens for the user's confirmation to update the app.
+self.addEventListener('message', (e) => {
+    if (!e.data) {
+        return;
+    }
+  
+    switch (e.data) {
+        case 'skipWaiting':
+            console.log('Received message: SW updated, activate it now by skipWaiting')
+            self.skipWaiting();
+            break;
+        default:
+            // NOOP
+            break;
+    }
+})
+
 // Listen to Push
 self.addEventListener('push', (e) => {
     let data
