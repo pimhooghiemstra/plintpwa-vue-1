@@ -13,9 +13,12 @@ if (workbox) {
 
 // This code listens for the user's confirmation to update the app.
 self.addEventListener('message', (e) => {
+    console.log('message', e)
     if (!e.data) {
         return;
     }
+
+    console.log('message data', e.data)
   
     switch (e.data) {
         case 'skipWaiting':
