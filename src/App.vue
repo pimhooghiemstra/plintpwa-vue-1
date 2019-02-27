@@ -5,7 +5,7 @@
             <router-link to="/about">About</router-link>
         </div>
         <p v-show="showMessage" id="notification">
-            This demo reflects the code from <a href="https://github.com/pimhooghiemstra/plintpwa-vue-1/releases/tag/v0.2" target="_blank">this repository</a>. The corresponding post will be on our blog shortly.
+            This demo reflects the code from <a href="https://github.com/pimhooghiemstra/plintpwa-vue-1/releases/tag/v0.2" target="_blank">this repository</a>. The <a :href="blogPost">corresponding post</a> is on our blog.
             <br>
             Please clear your application's storage (using the devTools) if you have played around with this demo before.
             <button type="button" @click="hideMessage">&times;</button>
@@ -19,6 +19,7 @@
         data() {
             return {
                 showMessage: true,
+                blogPost: 'https://www.blog.plint-sites.nl/how-to-add-push-notifications-to-a-progressive-web-app/',
             };
         },
         methods: {
