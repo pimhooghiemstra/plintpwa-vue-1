@@ -7,7 +7,7 @@
             <br>
             <textarea v-model="message" cols="30" rows="10" placeholder="Your message for push notification here"></textarea>
             <br>
-            <button @click="createPushNotification"><i class="fa fa-comment" aria-hidden="true"></i> Notify with Push</button>
+            <button @click="createPushNotification" :disabled="pushButtonDisabled"><i class="fa fa-comment" aria-hidden="true"></i> Notify with Push</button>
         </div>
     </div>
 </template>
@@ -19,6 +19,12 @@ export default {
     computed: {
         image() {
             return this.images[Math.floor(this.images.length * Math.random())]
+        },
+        pushButtonDisabled() {
+            if (this.message === null) {
+                return true
+            }
+            return this.message.length === 0
         },
     },
     data() {
@@ -202,7 +208,7 @@ export default {
 
     button {
         width: 240px;
-        background: #a02501;
+        background: #1da025;
         color: #fff;
         padding: 10px 20px;
         font-size: 18px;
