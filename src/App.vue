@@ -5,13 +5,12 @@
             <router-link to="/about">About</router-link>
         </div>
         <button id="refresh-button" v-if="updateExists" @click="refreshApp">Click to update!</button>
-        <p v-show="showMessage" id="notification">
-            This demo reflects the code from <a href="https://github.com/pimhooghiemstra/plintpwa-vue-1/" target="_blank">this repository</a>. 
-            The corresponding post will be available on our blog soon.
-            <br>
-            Please clear your application's storage (using the devTools) if you have played around with this demo before.
+        <div v-show="showMessage" id="notification">
+            <p>
+                This demo reflects the code from <a href="https://github.com/pimhooghiemstra/plintpwa-vue-1/" target="_blank">this repository</a>. The corresponding post will be available on our blog soon.
+            </p>
             <button type="button" @click="hideMessage">&times;</button>
-        </p>
+        </div>
         <router-view/>
     </div>
 </template>
@@ -78,12 +77,16 @@
         }
     }
 }
-p#notification {
+#notification {
     position: relative;
     width: 300px;
-    margin-left: auto;
-    margin-right: auto;
     font-size: 12px;
+    padding: 0px 40px 10px 10px;
+    box-sizing: border-box;
+
+    p {
+        margin: 0;
+    }
 
     a {
         color: #42b983;
@@ -91,8 +94,8 @@ p#notification {
 
     button {
         position: absolute;
-        top: -20px;
-        right: -20px;
+        top: 0px;
+        right: 0px;
         padding: 0 5px 2px;
         background: #1da025;
         color: #fff;
