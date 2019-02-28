@@ -6,7 +6,8 @@
         </div>
         <button id="refresh-button" v-if="updateExists" @click="refreshApp">Click to update!</button>
         <p v-show="showMessage" id="notification">
-            This demo reflects the code from <a href="https://github.com/pimhooghiemstra/plintpwa-vue-1/releases/tag/v0.2" target="_blank">this repository</a>. The <a :href="blogPost">corresponding post</a> is on our blog.
+            This demo reflects the code from <a href="https://github.com/pimhooghiemstra/plintpwa-vue-1/" target="_blank">this repository</a>. 
+            The corresponding post will be available on our blog soon.
             <br>
             Please clear your application's storage (using the devTools) if you have played around with this demo before.
             <button type="button" @click="hideMessage">&times;</button>
