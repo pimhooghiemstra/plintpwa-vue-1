@@ -90,6 +90,8 @@ button {
     font-size: 12px;
     padding: 0px 24px 24px;;
     box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
 
     p {
         margin: 0;
