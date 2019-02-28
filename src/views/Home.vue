@@ -1,6 +1,7 @@
 <template>
     <div class="home">
-        <img alt="Vue logo" :src="image">
+        <!-- <img alt="Vue logo" :src="image"> -->
+        <img alt="Vue logo" src="../assets/logo.png">
         <br>
         <button v-if="notificationsSupported" @click="toggleSubscription" :disabled="buttonDisabled">{{ (notificationsEnabled ? 'Disable' : 'Enable') }} notifications <i class="fa fa-caret-right" aria-hidden="true"></i></button>
         <div v-if="notificationsEnabled">
@@ -17,9 +18,9 @@ import axios from 'axios'
 export default {
     name: 'home',
     computed: {
-        image() {
-            return this.images[Math.floor(this.images.length * Math.random())]
-        },
+        // image() {
+        //     return this.images[Math.floor(this.images.length * Math.random())]
+        // },
         pushButtonDisabled() {
             if (this.message === null) {
                 return true
@@ -35,12 +36,12 @@ export default {
             serviceWorkerRegistation: null,
             subscription: null,
             message: null,
-            images: [
-                require('../assets/leonie-mortirolo.png'), 
-                require('../assets/pim-mortirolo.png'), 
-                require('../assets/mortirolo.png'), 
-                require('../assets/logo.png'),
-            ],            
+            // images: [
+            //     require('../assets/leonie-mortirolo.png'), 
+            //     require('../assets/pim-mortirolo.png'), 
+            //     require('../assets/mortirolo.png'), 
+            //     require('../assets/logo.png'),
+            // ],            
         }
     },
     methods: {
