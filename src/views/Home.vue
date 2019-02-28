@@ -2,12 +2,12 @@
     <div class="home">
         <img alt="Vue logo" :src="image">
         <br>
-        <button v-if="notificationsSupported" @click="toggleSubscription" :disabled="buttonDisabled">{{ (notificationsEnabled ? 'Disable' : 'Enable') }} notifications ></button>
+        <button v-if="notificationsSupported" @click="toggleSubscription" :disabled="buttonDisabled">{{ (notificationsEnabled ? 'Disable' : 'Enable') }} notifications <i class="fa fa-caret-right" aria-hidden="true"></i></button>
         <div v-if="notificationsEnabled">
             <br>
             <textarea v-model="message" cols="30" rows="10" placeholder="Your message for push notification here"></textarea>
             <br>
-            <button @click="createPushNotification">Notify with Push</button>
+            <button @click="createPushNotification"><i class="fa fa-comment" aria-hidden="true"></i> Notify with Push</button>
         </div>
     </div>
 </template>
