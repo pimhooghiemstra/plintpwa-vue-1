@@ -6,6 +6,13 @@ It's a simple PWA created using the @vue/cli with the pwa plugin. It uses the
 Notifications API to show a notification once you enabled them. With notifications enabled
 you are able to send a push notification to yourself with custom text.
 
+With Workbox it is ensured that the app works as a true PWA: with precaching, runtime caching and offline mode.
+
+## Part 3
+In part3, we include Workbox to implement precaching, runtime caching and offline mode. Moreover, the user
+decides when a new service worker is activated by clicking a button that pops up when an update is available.
+The corresponding blog post will be online soon.
+
 ## Part 2
 In part 2 we include push notifications. For that, we need a backend which we create using the Laravel
 framework. The repo for the Laravel project is available [here](https://github.com/pimhooghiemstra/plint-pwa-api). The frontend code is available in [this release](https://github.com/pimhooghiemstra/plintpwa-vue-1/releases/tag/v0.2). You can read the corresponding blogpost on our [blog](https://www.blog.plint-sites.nl/how-to-add-push-notifications-to-a-progressive-web-app/).
