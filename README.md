@@ -11,6 +11,10 @@ With Workbox it is ensured that the app works as a true PWA: with precaching, ru
 ## Part 3
 In part3, we include Workbox to implement precaching, runtime caching and offline mode. Moreover, the user
 decides when a new service worker is activated by clicking a button that pops up when an update is available.
+
+This release is tagged v0.3, checkout the [release notes](https://github.com/pimhooghiemstra/plintpwa-vue-1/releases/tag/v0.3).
+The API has not changed in this release and still refers to v0.2.
+
 The corresponding blog post will be online soon.
 
 ## Part 2
