@@ -15,7 +15,7 @@ decides when a new service worker is activated by clicking a button that pops up
 This release is tagged v0.3, checkout the [release notes](https://github.com/pimhooghiemstra/plintpwa-vue-1/releases/tag/v0.3).
 The API has not changed in this release and still refers to v0.2.
 
-The corresponding blog post will be online soon.
+You can read the corresponding blogpost on our [blog](https://www.blog.plint-sites.nl/adding-workbox-to-a-vue-cli-pwa/).
 
 ## Part 2
 In part 2 we include push notifications. For that, we need a backend which we create using the Laravel
