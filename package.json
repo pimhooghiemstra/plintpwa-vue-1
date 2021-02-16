@@ -1,7 +1,12 @@
 {
   "name": "pwa-blog-1",
-  "version": "1.0",
+  "description": "Demo project showing PWA with push notifications",
+  "version": "1.0.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pimhooghiemstra/plintpwa-vue-1"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
