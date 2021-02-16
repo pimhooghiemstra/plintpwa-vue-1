@@ -9,7 +9,7 @@ you are able to send a push notification to yourself with custom text.
 With Workbox it is ensured that the app works as a true PWA: with precaching, runtime caching and offline mode.
 
 ## Update February 2021
-The original code was developed at the end of 2018. In the meantime, several packages received updates. The current version works woth VueCLI v4.5.0 and is up to date. 
+The original code was developed at the end of 2018. In the meantime, several packages received updates. The current version works woth VueCLI v4.5.0 and is up to date. This is v1.0.
 ## Part 3
 In part3, we include Workbox to implement precaching, runtime caching and offline mode. Moreover, the user
 decides when a new service worker is activated by clicking a button that pops up when an update is available.
