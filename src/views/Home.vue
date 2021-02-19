@@ -36,6 +36,10 @@ export default {
             serviceWorkerRegistation: null,
             subscription: null,
             message: null,
+            user: {
+                id: null,
+                name: '',
+            },
             // images: [
             //     require('../assets/leonie-mortirolo.png'), 
             //     require('../assets/pim-mortirolo.png'), 
@@ -67,6 +71,10 @@ export default {
                                 const { user } = data
                                 console.log('user created on the server', user);
                                 localStorage.setItem('username', user.name)
+                                localStorage.setItem('userId', user.id)
+
+                                this.user.id = user.id
+                                this.user.name = user.name
 
                                 // store new subscription on the server
                                 return axios.post(`${process.env.VUE_APP_API_PATH}/subscription`, {
@@ -90,6 +98,7 @@ export default {
                         // destroy on the server
                         return axios.post(`${process.env.VUE_APP_API_PATH}/subscription/delete`, {
                             endpoint: this.subscription.endpoint,
+                            userId: this.user.id,
                         })
                         // unsubscribe on the client
                         .then(() => this.subscription.unsubscribe())
@@ -196,6 +205,9 @@ export default {
                 this.buttonDisabled = false
                 this.notificationsEnabled = true
                 this.subscription = sub
+                // update local state
+                this.user.id = localStorage.getItem('username')
+                this.user.name = localStorage.getItem('userId')
             }
         })
     },
