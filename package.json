@@ -12,21 +12,21 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "core-js": "^3.6.5",
+    "core-js": "^3.15.2",
     "register-service-worker": "^1.7.1",
-    "vue": "^2.6.11",
-    "vue-router": "^3.2.0",
+    "vue": "^2.6.14",
+    "vue-router": "^3.5.2",
     "vuex": "^3.4.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-pwa": "~4.5.0",
-    "@vue/cli-plugin-router": "~4.5.0",
-    "@vue/cli-plugin-vuex": "^4.3.1",
-    "@vue/cli-service": "~4.5.0",
+    "@vue/cli-plugin-babel": "^4.5.13",
+    "@vue/cli-plugin-pwa": "^4.5.13",
+    "@vue/cli-plugin-router": "^4.5.13",
+    "@vue/cli-plugin-vuex": "^4.5.13",
+    "@vue/cli-service": "^4.5.13",
     "axios": "^0.21.1",
-    "less": "^3.0.4",
+    "less": "^3.13.1",
     "less-loader": "^5.0.0",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.14"
   }
 }
